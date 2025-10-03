@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#Free_Koulchi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #2d2d2d, #000000);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            overflow: hidden;
+            font-family: 'Orbitron', monospace;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+            text-align: center;
+        }
+        
+        .text-3d {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(255, 255, 255, 0.6),
+                0 0 60px rgba(255, 255, 255, 0.4),
+                5px 5px 0px #333333,
+                10px 10px 0px #666666,
+                15px 15px 0px #999999;
+            transform: rotateX(15deg) rotateY(-5deg);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .text-3d::before {
+            content: '#Free_Koulchi';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            color: rgba(255, 255, 255, 0.1);
+            transform: translate(8px, 8px);
+            text-shadow: none;
+        }
+        
+        .text-3d::after {
+            content: '#Free_Koulchi';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            color: rgba(0, 0, 0, 0.8);
+            transform: translate(16px, 16px);
+            text-shadow: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: rotateX(15deg) rotateY(-5deg) translateY(0px);
+            }
+            50% { 
+                transform: rotateX(20deg) rotateY(5deg) translateY(-20px);
+            }
+        }
+        
+        .hashtag {
+            color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 1),
+                0 0 40px rgba(255, 255, 255, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .twitter-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: linear-gradient(145deg, #ffffff, #e0e0e0);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            border: 2px solid #ffffff;
+            text-transform: uppercase;
+        }
+        
+        .twitter-link:hover {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 24px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+        
+        .twitter-icon {
+            width: 24px;
+            height: 24px;
+            fill: #000000;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+            animation: particleFloat 12s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .text-3d {
+                font-size: clamp(2rem, 6vw, 4rem);
+                letter-spacing: 0.05em;
+                margin-bottom: 2rem;
+            }
+            
+            .twitter-link {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="text-3d">
+            <span class="hashtag">#</span>Free_Koulchi
+        </div>
+        
+        <a href="https://x.com/FreeKoulchi" class="twitter-link" target="_blank" rel="noopener noreferrer">
+            <svg class="twitter-icon" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            Follow @FreeKoulchi
+        </a>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 8) + 's';
+            
+            // Random opacity for variety
+            const opacity = Math.random() * 0.5 + 0.3;
+            particle.style.background = `radial-gradient(circle, rgba(255, 255, 255, ${opacity}), transparent)`;
+            
+            document.getElementById('particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 12000);
+        }
+        
+        // Create particles periodically
+        setInterval(createParticle, 500);
+        
+        // Add mouse movement effect
+        document.addEventListener('mousemove', (e) => {
+            const textElement = document.querySelector('.text-3d');
+            const rect = textElement.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            
+            const rotateX = (mouseY / window.innerHeight) * 20;
+            const rotateY = (mouseX / window.innerWidth) * 20;
+            
+            textElement.style.transform = `rotateX(${15 - rotateX}deg) rotateY(${-5 + rotateY}deg)`;
+        });
+        
+        // Reset on mouse leave
+        document.addEventListener('mouseleave', () => {
+            const textElement = document.querySelector('.text-3d');
+            textElement.style.transform = 'rotateX(15deg) rotateY(-5deg)';
+        });
+    </script>
+</body>
+</html>
